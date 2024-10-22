@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>LISTADO DE TIENDAS</div>
+    {% if Tienda %}
+    <table>
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>RAZON SOCIAL</th>
+                <th>RUT DE EMPRESA</th>
+                <th>EMAIL</th>
+                <th>NUMERO DE CASA</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for tienda in Tienda %}
+            <tr>
+                <td>{{tienda.nombre}}</td>
+                <td>{{tienda.razonsocial}}</td>
+                <td>{{tienda.rutempresa}}</td>
+                <td>{{tienda.email}}</td>
+                <td>{{tienda.numerocasa}}</td>
+                <td>
+                    <a href="/actualizar/{{tienda.id}}">ACTUALIZAR</a>
+                    <a href="/eliminar/{{tienda.id}}" onclick="return confirm('desea aliminar la tienda?');">ELIMINAR</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    {%else%}
+    <div>
+        <strong>NO se encuentran proyectos</strong>
+    </div>
+    {% endif %}
+    <div>
+        <a href="../">VOLVER</a>
+        <a href="/agregar">AGREGUE TIENDA!!</a>
+    </div>
+    {{form.as_list}}
+    {% csrf_token %}
+</body>
+</html>
